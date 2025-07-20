@@ -170,6 +170,7 @@ async function startServer() {
       .listen(HTTP_PORT, () =>
         console.log(`HTTP on ${HTTP_PORT} → redirects to HTTPS`)
       );
+      /*
     https.createServer(sslOptions, app).listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
       console.log(`🌍 Environment: ${process.env.NODE_ENV || "development"}`);
@@ -179,7 +180,7 @@ async function startServer() {
       console.log(`⚽ Matches endpoints: http://localhost:${PORT}/api/matches`);
       console.log(
         `👤 Tipsters endpoints: http://localhost:${PORT}/api/tipsters`
-      );
+      );*/
     });
     
 
