@@ -50,6 +50,7 @@ app.use(limiter);
 // CORS configuration
 
 // CORS configuration - FINAL VERSION
+/*
 app.use(
   cors({
     origin: ["http://localhost:3001", "https://www.bettingstats-central.app"],
@@ -67,6 +68,7 @@ app.use(
     optionsSuccessStatus: 204,
   })
 );
+*/
 
 
 
@@ -154,12 +156,12 @@ app.ws("/new-tip", function (ws, req) {
   });
   console.log("socket", req.testing);
 });
-
+/*
 const sslOptions = {
   key: fs.readFileSync(`key.pem`),
   cert: fs.readFileSync(`cert.pem`),
 };
-
+*/
 // Start server
 async function startServer() {
   try {
@@ -170,7 +172,7 @@ async function startServer() {
       .listen(HTTP_PORT, () =>
         console.log(`HTTP on ${HTTP_PORT} → redirects to HTTPS`)
       );
-    /*
+      /*
     https.createServer(sslOptions, app).listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
       console.log(`🌍 Environment: ${process.env.NODE_ENV || "development"}`);
@@ -182,6 +184,9 @@ async function startServer() {
         `👤 Tipsters endpoints: http://localhost:${PORT}/api/tipsters`
       );
     });*/
+    
+
+    
   } catch (error) {
     console.error('❌ Failed to start server:', error);
     process.exit(1);
