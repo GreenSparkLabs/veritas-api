@@ -1,5 +1,5 @@
 // Fix import paths in server.js
-const path = require('path');
+const fs = require('fs');
 
 
 // Updated server.js with correct imports
