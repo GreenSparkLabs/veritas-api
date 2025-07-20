@@ -154,8 +154,12 @@ app.ws("/new-tip", function (ws, req) {
 });
 
 const sslOptions = {
-  key: fs.readFileSync(`key.pem`),
-  cert: fs.readFileSync(`cert.pem`),
+  key: fs.readFileSync(
+    `/etc/letsencrypt/live/bettingstats-central.app/privkey.pem`
+  ),
+  cert: fs.readFileSync(
+    `/etc/letsencrypt/live/bettingstats-central.app/fullchain.pem`
+  ),
 };
 
 // Start server
