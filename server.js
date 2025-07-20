@@ -50,7 +50,7 @@ app.use(limiter);
 // CORS configuration
 app.use(
   cors({
-    origin: ["http://localhost:3001"],
+    origin: ["http://localhost:3001", "https://www.bettingstats-central.app"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: [
