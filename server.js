@@ -50,8 +50,8 @@ app.use(limiter);
 // CORS configuration
 app.use(
   cors({
-    origin: '*',
-    credentials: false,
+    origin: ["http://localhost:3001/"],
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: [
       "Content-Type",
