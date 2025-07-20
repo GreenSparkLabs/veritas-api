@@ -60,7 +60,7 @@ app.use(
       "X-HTTP-Method-Override",
       "Accept",
     ],
-    preflightContinue: false,
+    preflightContinue: true,
     optionsSuccessStatus: 204,
   })
 );
