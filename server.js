@@ -27,10 +27,7 @@ const PORT = process.env.PORT || 443;
 const HTTP_PORT = process.env.HTTP_PORT || 80;
 
 // Security middleware
-app.use(helmet({
-  contentSecurityPolicy: false,
-  crossOriginResourcePolicy: { policy: "cross-origin" }
-}));
+
 
 // Rate limiting
 const limiter = rateLimit({
@@ -50,7 +47,7 @@ app.use(limiter);
 // CORS configuration
 
 // CORS configuration - FINAL VERSION
-/*
+
 app.use(
   cors({
     origin: ["http://localhost:3001", "https://www.bettingstats-central.app"],
@@ -68,7 +65,7 @@ app.use(
     optionsSuccessStatus: 204,
   })
 );
-*/
+
 
 
 
@@ -172,7 +169,7 @@ async function startServer() {
       .listen(HTTP_PORT, () =>
         console.log(`HTTP on ${HTTP_PORT} → redirects to HTTPS`)
       );
-      /*
+      
     https.createServer(sslOptions, app).listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
       console.log(`🌍 Environment: ${process.env.NODE_ENV || "development"}`);
@@ -183,7 +180,7 @@ async function startServer() {
       console.log(
         `👤 Tipsters endpoints: http://localhost:${PORT}/api/tipsters`
       );
-    });*/
+    });
     
 
     
