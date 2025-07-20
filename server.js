@@ -153,12 +153,12 @@ app.ws("/new-tip", function (ws, req) {
   });
   console.log("socket", req.testing);
 });
-/*
+
 const sslOptions = {
   key: fs.readFileSync(`key.pem`),
   cert: fs.readFileSync(`cert.pem`),
 };
-*/
+
 // Start server
 async function startServer() {
   try {
