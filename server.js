@@ -61,8 +61,9 @@ app.use(
       "X-Requested-With",
       "authentication",
       "X-HTTP-Method-Override",
-      "Accept"
+      "Accept",
     ],
+    preflightContinue: false,
     optionsSuccessStatus: 204,
   })
 );
