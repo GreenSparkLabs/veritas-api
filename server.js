@@ -24,6 +24,7 @@ const tipstersRoutes = require('./routes/tipsters');
 const app = express();
 const expressWs = require("express-ws")(app)
 const PORT = process.env.PORT || 443;
+const HTTP_PORT = process.env.HTTP_PORT || 80;
 
 // Security middleware
 app.use(helmet({
