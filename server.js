@@ -7,6 +7,8 @@ const express = require('express');
 
 const cors = require('cors');
 const helmet = require('helmet');
+const https = require("https");
+const http = require("http");
 const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
@@ -21,7 +23,7 @@ const tipstersRoutes = require('./routes/tipsters');
 
 const app = express();
 const expressWs = require("express-ws")(app)
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 443;
 
 // Security middleware
 app.use(helmet({
@@ -146,21 +148,33 @@ app.ws("/new-tip", function (ws, req) {
   console.log("socket", req.testing);
 });
 
+const sslOptions = {
+  key: fs.readFileSync(`key.pem`),
+  cert: fs.readFileSync(`cert.pem`),
+};
+
 // Start server
 async function startServer() {
   try {
     await testConnection();
     await initializeTables();
+    http
+      .createServer(app)
+      .listen(HTTP_PORT, () =>
+        console.log(`HTTP on ${HTTP_PORT} → redirects to HTTPS`)
+      );
+    https
+      .createServer(sslOptions, app)
+      .listen(HTTPS_PORT, () =>{
+        console.log(`🚀 Server running on port ${PORT}`);
+        console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+        console.log(`📡 API Health Check: http://localhost:${PORT}/health`);
+        console.log(`🔐 Auth endpoints: http://localhost:${PORT}/api/auth`);
+        console.log(`📊 Tips endpoints: http://localhost:${PORT}/api/tips`);
+        console.log(`⚽ Matches endpoints: http://localhost:${PORT}/api/matches`);
+        console.log(`👤 Tipsters endpoints: http://localhost:${PORT}/api/tipsters`);
+        });
     
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on port ${PORT}`);
-      console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-      console.log(`📡 API Health Check: http://localhost:${PORT}/health`);
-      console.log(`🔐 Auth endpoints: http://localhost:${PORT}/api/auth`);
-      console.log(`📊 Tips endpoints: http://localhost:${PORT}/api/tips`);
-      console.log(`⚽ Matches endpoints: http://localhost:${PORT}/api/matches`);
-      console.log(`👤 Tipsters endpoints: http://localhost:${PORT}/api/tipsters`);
-    });
 
     
   } catch (error) {
